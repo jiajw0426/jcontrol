@@ -52,29 +52,28 @@
 
 			}
 			if (find) {
-                
-				layoutData._outerWidth=child.oAttr.dom.outerWidth();
-				layoutData._outerHeight=child.oAttr.dom.outerHeight();
+
+				layoutData._outerWidth = child.oAttr.dom.outerWidth();
+				layoutData._outerHeight = child.oAttr.dom.outerHeight();
 				layoutData._rowIndex = j;
 				layoutData._columndIndex = i;
-				
+
 				oAttr.allCells = oAttr.allCells.concat(findCells);
-				
-			
+
 			}
 			return find;
 		}
 
-		function _computerCellRange(child){
+		function _computerCellRange(child) {
 			var oAttr = this.oAttr;
-			
+
 			var layoutData = child.oInit.layout.layoutData;
 			var outerHeight = layoutData._outerHeight;
 			var outerWidth = layoutData._outerWidth;
 			var vSpan = layoutData.vSpan;
 			var hSpan = layoutData.hSpan;
-			var j=layoutData._rowIndex ;
-			var i=layoutData._columndIndex ;
+			var j = layoutData._rowIndex;
+			var i = layoutData._columndIndex;
 			var controlWidth = layoutData.widthHint > outerWidth ? layoutData.widthHint
 					: outerWidth;
 			var width = controlWidth / hSpan;
@@ -83,9 +82,9 @@
 					: outerHeight;
 			var height = controlHeight / vSpan;
 			for ( var c = 0; c < hSpan; c++) {
-				if(layoutData.grabExcessHSpace){
-					oAttr.grabExcessHSpaceColumns[i + c]=1;
-				}		
+				if (layoutData.grabExcessHSpace) {
+					oAttr.grabExcessHSpaceColumns[i + c] = 1;
+				}
 				if (oAttr.columnWidth[i + c]) {
 					if (width > oAttr.columnWidth[i + c]) {
 						oAttr.columnWidth[i + c] = width;
@@ -96,8 +95,8 @@
 			}
 
 			for ( var r = 0; r < vSpan; r++) {
-				if(layoutData.grabExcessVSpace){
-					oAttr.grabExcessVSpaceRows[j + r]=1;
+				if (layoutData.grabExcessVSpace) {
+					oAttr.grabExcessVSpaceRows[j + r] = 1;
 				}
 				if (oAttr.rowHeight[j + r]) {
 					if (height > oAttr.rowHeight[j + r]) {
@@ -129,49 +128,47 @@
 			for ( var i = 0; i < vSpan; i++) {
 				earaHeight += oAttr.rowHeight[i + layoutData._rowIndex];
 			}
-			
-			
-			if (layoutData.grabExcessVSpace||layoutData.vAlignment=="full") {
-				
+
+			if (layoutData.grabExcessVSpace || layoutData.vAlignment == "full") {
+
 				child.oAttr.dom.css( {
 					"height" : earaHeight
 				});
-			}else{
-				var topOfsset=earaHeight-outerHeight;
-				if(layoutData.vAlignment=="begin"){
-					top+= Math.min(layoutData.vIndent,topOfsset);
+			} else {
+				var topOfsset = earaHeight - outerHeight;
+				if (layoutData.vAlignment == "begin") {
+					top += Math.min(layoutData.vIndent, topOfsset);
 				}
-				if(layoutData.vAlignment=="center"){
-					top+=topOfsset/2;
+				if (layoutData.vAlignment == "center") {
+					top += topOfsset / 2;
 				}
-	             if(layoutData.vAlignment=="end"){
-	            	 top+=topOfsset;
+				if (layoutData.vAlignment == "end") {
+					top += topOfsset;
 				}
-				
+
 			}
-			
+
 			var earaWidth = (hSpan - 1) * this.oInit.hSpacing;
 			for ( var i = 0; i < hSpan; i++) {
-				earaWidth += oAttr.columnWidth[i
-						+ layoutData._columndIndex];
+				earaWidth += oAttr.columnWidth[i + layoutData._columndIndex];
 			}
-			if (layoutData.grabExcessHSpace||layoutData.hAlignment=="full") {
-				
+			if (layoutData.grabExcessHSpace || layoutData.hAlignment == "full") {
+
 				child.oAttr.dom.css( {
 					"width" : earaWidth
 				});
-			}else {
-				var leftOffset=earaWidth-outerWidth;
-				if(layoutData.hAlignment=="begin"){
-					left+=Math.min(leftOffset, layoutData.hIndent); 
+			} else {
+				var leftOffset = earaWidth - outerWidth;
+				if (layoutData.hAlignment == "begin") {
+					left += Math.min(leftOffset, layoutData.hIndent);
 				}
-				if(layoutData.hAlignment=="center"){
-					left+=(leftOffset)/2;  
+				if (layoutData.hAlignment == "center") {
+					left += (leftOffset) / 2;
 				}
-	             if(layoutData.hAlignment=="end"){
-	            	left+=leftOffset;
+				if (layoutData.hAlignment == "end") {
+					left += leftOffset;
 				}
-				
+
 			}
 			child.oAttr.dom.css( {
 				"position" : "absolute",
@@ -181,7 +178,7 @@
 			});
 		}
 		function _computerOffset(control) {
-			
+
 			if (this.oInit.hExpand) {
 				$.Scrollable(control, {
 					"toWidth" : this.oAttr.allWidth,
@@ -192,73 +189,85 @@
 
 		function _couputerLayoutData(control) {
 			var allChild = control.oAttr.children;
-			if (this.oAttr.allCells.length == 0) {
-				for ( var index in allChild) {
-					var child = allChild[index];
+
+			for ( var index in allChild) {
+				var child = allChild[index];
+				if (!child.oInit.layout.layoutData.find) {
 					child.oInit.layout.layoutData = $.extend( {},
 							Gridlayout.oDefaults.oSettings.gridData,
 							child.oInit.layout.layoutData);
 					this._addCell(child);
+					child.oInit.layout.layoutData.find = true;
 				}
 			}
-			this.oAttr.columnWidth=[];
-			this.oAttr.rowHeight=[];
+
+			this.oAttr.columnWidth = [];
+			this.oAttr.rowHeight = [];
 			for ( var index in allChild) {
 				var child = allChild[index];
 				this._computerCellRange(child);
 			}
-			this.oAttr.allColumnWidth = this.oInit.marginLeft+this.oInit.marginRight - this.oInit.hSpacing;
+			this.oAttr.allColumnWidth = this.oInit.marginLeft
+					+ this.oInit.marginRight - this.oInit.hSpacing;
 			for ( var i = 0; i < this.oAttr.columnWidth.length; i++) {
 				this.oAttr.allColumnWidth += this.oAttr.columnWidth[i]
 						+ this.oInit.hSpacing;
 			}
 
-			this.oAttr.allRowHeight = this.oInit.marginTop+this.oInit.marginBottom - this.oInit.vSpacing;
+			this.oAttr.allRowHeight = this.oInit.marginTop
+					+ this.oInit.marginBottom - this.oInit.vSpacing;
 			for ( var i = 0; i < this.oAttr.rowHeight.length; i++) {
 				this.oAttr.allRowHeight += this.oAttr.rowHeight[i]
 						+ this.oInit.vSpacing;
 			}
-		
+
 			var scrollBar = control.oAttr.scrollBar;
-			this.oAttr.allWidth=this.oAttr.allColumnWidth;
+			this.oAttr.allWidth = this.oAttr.allColumnWidth;
 			if (scrollBar.vbar) {
-					this.oAttr.allWidth =this.oAttr.allColumnWidth+ $.Scrollable.oDefaults.barWidth;
+				this.oAttr.allWidth = this.oAttr.allColumnWidth
+						+ $.Scrollable.oDefaults.barWidth;
 			}
-			this.oAttr.allHeight=this.oAttr.allRowHeight;
+			this.oAttr.allHeight = this.oAttr.allRowHeight;
 			if (scrollBar.hbar) {
-					this.oAttr.allHeight=  this.oAttr.allRowHeight+$.Scrollable.oDefaults.barHeight;
+				this.oAttr.allHeight = this.oAttr.allRowHeight
+						+ $.Scrollable.oDefaults.barHeight;
 			}
-			
-			var oAttr=this.oAttr;
-			if(oAttr.allRowHeight<control.oAttr.control.height()){
-				var grabableVSpace=control.oAttr.control.height()-oAttr.allRowHeight;
-				oAttr.allRowHeight=control.oAttr.control.height();
-				var grabRows=[];
-				for(var i in  oAttr.grabExcessVSpaceRows){
-					if(oAttr.grabExcessVSpaceRows[i]==1){
+
+			var oAttr = this.oAttr;
+			var clientArea = control._getClientArea();
+			var width = clientArea.width;
+			var height = clientArea.height;
+			if (oAttr.allRowHeight < height) {
+				var grabableVSpace =height
+						- oAttr.allRowHeight;
+				oAttr.allRowHeight = height;
+				var grabRows = [];
+				for ( var i in oAttr.grabExcessVSpaceRows) {
+					if (oAttr.grabExcessVSpaceRows[i] == 1) {
 						grabRows.push(i);
 					}
 				}
-				var grapHeight=grabableVSpace/grabRows.length;
-				for(var i in grabRows){
-					oAttr.rowHeight[grabRows[i]]+=grapHeight;
+				var grapHeight = grabableVSpace / grabRows.length;
+				for ( var i in grabRows) {
+					oAttr.rowHeight[grabRows[i]] += grapHeight;
 				}
 			}
-			if(oAttr.allColumnWidth<control.oAttr.control.width()){
-				var grabableVSpace=control.oAttr.control.width()-oAttr.allColumnWidth;
-				oAttr.allColumnWidth=control.oAttr.control.width();
-				var grabColumns=[];
-				for(var i in  oAttr.grabExcessHSpaceColumns){
-					if(oAttr.grabExcessHSpaceColumns[i]==1){
+			if (oAttr.allColumnWidth < width) {
+				var grabableVSpace = width
+						- oAttr.allColumnWidth;
+				oAttr.allColumnWidth = width;
+				var grabColumns = [];
+				for ( var i in oAttr.grabExcessHSpaceColumns) {
+					if (oAttr.grabExcessHSpaceColumns[i] == 1) {
 						grabColumns.push(i);
 					}
 				}
-				var grapWidth=grabableVSpace/grabColumns.length;
-				for(var i in grabColumns){
-					oAttr.columnWidth[grabColumns[i]]+=grapWidth;
+				var grapWidth = grabableVSpace / grabColumns.length;
+				for ( var i in grabColumns) {
+					oAttr.columnWidth[grabColumns[i]] += grapWidth;
 				}
 			}
-		
+
 		}
 		function _layout(control) {
 			this._couputerLayoutData(control);
@@ -278,7 +287,7 @@
 			"_couputerLayoutData" : _couputerLayoutData,
 			"_addCell" : _addCell,
 			"_findCell" : _findCell,
-			"_computerCellRange":_computerCellRange
+			"_computerCellRange" : _computerCellRange
 		};
 		this.oAttr = {
 			"allCells" : [],
@@ -286,8 +295,8 @@
 			"rowHeight" : [],
 			"startRow" : 0,
 			"allWidth" : 0,
-			"grabExcessHSpaceColumns":[],
-			"grabExcessVSpaceRows" :[]
+			"grabExcessHSpaceColumns" : [],
+			"grabExcessVSpaceRows" : []
 
 		};
 		this.oInit = $.extend(true, {}, Gridlayout.oDefaults.oSettings, oInit);
@@ -305,7 +314,7 @@
 		"vExpand" : true,
 		"numColumns" : 1,
 		"makeColumnsEqualWidth" : false,
-		
+
 		gridData : {
 			"grabExcessHSpace" : false,
 			"grabExcessVSpace" : false,

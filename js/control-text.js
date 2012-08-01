@@ -8,11 +8,11 @@
  */
 
 (function($,document) {
-	var Button=function(oInit){
+	var Text=function(oInit){
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom=$("<button/>").addClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-button");
+			oAttr.dom=$("<span>"+oInit.label+"</span>");
 			oAttr.control=oAttr.dom;
 			oAttr.client=oAttr.dom;
 	    	if(oInit.container){
@@ -26,48 +26,37 @@
 				}
 			}
 		}
-		function _getClientArea(){
-			var dom = this.oAttr.dom;
-			return {
-				width:dom.width(),height:dom.height()
-				}
-		}
 		
 		this.oApi={
-			"_create":_create,
-			"_getClientArea":_getClientArea
+			"_create":_create
 		};
 		this.oAttr={
-				"isContainer" : true	
+				"isContainer" : false	
 		};
 		this.getFeatures=function(){
-			return Button.aFeatures;
+			return Label.aFeatures;
 		};
-		this.oInit=$.extend(true,{},Button.defaults.oSetting,oInit);
+		this.oInit=$.extend({},Text.defaults.oSetting,oInit);
 		
 		
 	};
-	Button.aFeatures=[];
-	Button.defaults={
+	Text.aFeatures=[];
+	Text.defaults={
 			
 	};
-	Button.defaults.oSetting={
+	Text.defaults.oSetting={
 			id : +new Date().getTime(),
-			value:"button",
-			"layout" : {
-		    "type" : "gridlayout",
-		    "numColumns":2
-	     }
+			label:"label"
 	};
 	if ( typeof $.fn.Control == "function"){
 		$.fn.Control.aExts.push({
-				"type":"button",
+				"type":"label",
 				"fnImp":function(oInit){				
-				      return new Button(oInit);
+				      return new Text(oInit);
 			          }
 				  
 			}
 		);
 	}
-	$.fn.Button=Button;
+	$.fn.Text=Text;
 })(jQuery,document);

@@ -51,16 +51,18 @@
 		function _getClientArea() {
 			var oInit = this.oInit;
 			var dom = this.oAttr.dom;
+			var vbar=this.oAttr.scrollBar.vbar;
+			var hbar=this.oAttr.scrollBar.hbar;
 			return {
 				x : 0,
 				y : 0,
 				offsetX : 0,
 				offsetY : oInit.titleHeight + 2,
-				width : this.vScrollbar ? dom.width()
-						- Constants.PANEL_V_SCROLL_BAR_WIDTH : dom.width(),
-				height : this.hScrollbar ? dom.height() - oInit.titleHeigh
-						- Constants.PANEL_H_SCROLL_BAR_HEIGHT : dom.height()
-						- 2 - oInit.titleHeight
+				width : vbar ? dom.width()
+						- $.Scrollable.oDefaults.barWidth : dom.width(),
+				height : hbar ? dom.height() 
+						- $.Scrollable.oDefaults.barHeight : dom.height()
+						- oInit.titleHeight-2
 			};
 		};
        
