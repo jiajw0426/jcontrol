@@ -52,7 +52,7 @@
 			
 	};
 	Button.defaults.oSetting={
-			id : +new Date().getTime(),
+			id : ""+new Date().getTime(),
 			value:"button",
 			"layout" : {
 		    "type" : "gridlayout",

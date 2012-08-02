@@ -2,7 +2,7 @@
 	var ButtonImage=function(button){
 		button.oAttr.layout.oInit.numColumns=4;
 		button.addControl( {
-			type : "blank",
+			type : "line",
 			color:"red",
 			layout:{
             "layoutData":{

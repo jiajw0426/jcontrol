@@ -12,7 +12,7 @@
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom=$("<span>"+oInit.label+"</span>");
+			oAttr.dom=$("<input class='ui-text'/>");
 			oAttr.control=oAttr.dom;
 			oAttr.client=oAttr.dom;
 	    	if(oInit.container){
@@ -34,7 +34,7 @@
 				"isContainer" : false	
 		};
 		this.getFeatures=function(){
-			return Label.aFeatures;
+			return Text.aFeatures;
 		};
 		this.oInit=$.extend({},Text.defaults.oSetting,oInit);
 		
@@ -45,12 +45,11 @@
 			
 	};
 	Text.defaults.oSetting={
-			id : +new Date().getTime(),
-			label:"label"
+			id : ""+new Date().getTime()
 	};
 	if ( typeof $.fn.Control == "function"){
 		$.fn.Control.aExts.push({
-				"type":"label",
+				"type":"text",
 				"fnImp":function(oInit){				
 				      return new Text(oInit);
 			          }

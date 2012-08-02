@@ -131,7 +131,12 @@
 
 			if (layoutData.grabExcessVSpace || layoutData.vAlignment == "full") {
 
-				child.oAttr.dom.css( {
+				var dom=child.oAttr.dom;
+                var outlineHeight=dom.outerHeight()-dom.height();
+                if(outlineHeight){
+                	earaHeight-= outlineHeight;
+                }
+				dom.css( {
 					"height" : earaHeight
 				});
 			} else {
@@ -154,9 +159,14 @@
 			}
 			if (layoutData.grabExcessHSpace || layoutData.hAlignment == "full") {
 
-				child.oAttr.dom.css( {
-					"width" : earaWidth
-				});
+				 var dom=child.oAttr.dom;
+				    var outLineWidth=dom.outerWidth()-dom.width();
+				    if(outLineWidth){
+				    	earaWidth-= outLineWidth;
+				    }
+					dom.css( {
+						"width" : earaWidth
+					});
 			} else {
 				var leftOffset = earaWidth - outerWidth;
 				if (layoutData.hAlignment == "begin") {
@@ -178,7 +188,6 @@
 			});
 		}
 		function _computerOffset(control) {
-
 			if (this.oInit.hExpand) {
 				$.Scrollable(control, {
 					"toWidth" : this.oAttr.allWidth,

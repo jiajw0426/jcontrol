@@ -54,7 +54,7 @@
 	};
 	if ( typeof $.fn.Control == "function"){
 		$.fn.Control.aExts.push({
-				"type":"blank",
+				"type":"line",
 				"fnImp":function(oInit){				
 				      return new Line(oInit);
 			          }

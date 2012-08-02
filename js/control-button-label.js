@@ -1,7 +1,7 @@
 (function($){
 	var ButtonLabel=function(button){
 		button.addControl( {
-			type : "blank",
+			type : "line",
 			layout:{
             "layoutData":{
 			       "grabExcessVSpace":true

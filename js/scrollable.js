@@ -271,9 +271,9 @@
 			if (oSetting.scrollY) {
 				creatVScrollbar(control, oSetting);
 			}else{
-				if(control.oAttr.control.outerHeight()<oSetting.toHeight){
-				    control.oAttr.control.css("height",oSetting.toHeight);
-				    control.oInit.layout.layoutData._outerHeight=control.oAttr.control.outerHeight();
+				if(control.oAttr.dom.outerHeight()<oSetting.toHeight){
+				    control.oAttr.dom.css("height",oSetting.toHeight);
+				    control.oInit.layout.layoutData._outerHeight=control.oAttr.dom.outerHeight();
 				    control.oInit.layout.layoutData._orignHeight= control.oInit.layout.layoutData._height;
 				    control.oInit.layout.layoutData._height=control.oAttr.dom.height();
 				}
@@ -283,9 +283,9 @@
 			if (oSetting.scrollX) {
 				creatHScrollbar(control, oSetting);
 			}else{
-				if(control.oAttr.control.outerWidth()<oSetting.toWidth){
+				if(control.oAttr.dom.outerWidth()<oSetting.toWidth){
 				   control.oAttr.control.css("width",oSetting.toWidth);
-				   control.oInit.layout.layoutData._outerWidth= control.oAttr.control.outerWidth();
+				   control.oInit.layout.layoutData._outerWidth= control.oAttr.dom.outerWidth();
 				   control.oInit.layout.layoutData._orignWidth=control.oInit.layout.layoutData._width;
 				   control.oInit.layout.layoutData._width= control.oAttr.dom.width();
 				}

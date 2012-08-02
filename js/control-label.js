@@ -45,7 +45,7 @@
 			
 	};
 	Label.defaults.oSetting={
-			id : +new Date().getTime(),
+			id : ""+new Date().getTime(),
 			label:"label"
 	};
 	if ( typeof $.fn.Control == "function"){
