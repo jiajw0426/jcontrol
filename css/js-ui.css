@@ -1,0 +1,33 @@
+.ui-inline { display: inline; }
+
+.ui.absolute{position: absolute;}
+
+.ui-body {overflow:hidden;align:"center";padding:0px;margin:0px};
+.ui-body-panel {position: absolute;left:0px;top:0px}
+
+.ui-panel-client {border:0px;margin:0px;padding:0xp;overflow:hidden}
+.ui-panel-control{border:0px;margin:0px;padding:0xp}
+
+.ui-control {position: absolute;}
+
+
+.ui-scroll-h {position: absolute;height:28px;bottom:1px;}
+.ui-scroll-arrow-w-div { position: absolute;   left:1px; top:1px;  border:1px;height:24px;width:24px;}
+.ui-scroll-arrow-icon { position: absolute;   left:4px;   top:4px}
+.ui-scroll-button-h { position: absolute;   top:1px;left:0px}
+.ui-scroll-button-container-h { position: absolute; height: 100%; border:0px; top:0px}
+.ui-scroll-arrow-e-div { position: absolute; right:1px; top:1px; border:1px;height:24px;width:24px;}
+
+.ui-scroll-v {position: absolute;width:28px;right:1px;}
+.ui-scroll-arrow-n-div { position: absolute;   left:1px; top:1px;  border:1px;height:24px;width:24px;}
+.ui-scroll-arrow-icon { position: absolute;   left:4px;   top:4px}
+.ui-scroll-button-v { position: absolute;   top:0px;left:1px}
+.ui-scroll-button-container-v { position: absolute; width: 100%; border:0px; top:0px}
+.ui-scroll-arrow-s-div { position: absolute; right:1px; bottom:1px; border:1px;height:24px;width:24px;}
+
+.ui-text {padding:0px;margin:0px}
+
+.ui-button-image  {position:absolute;bottom:4px;right:2px}
+.ui-button-button  {margin:0px}
+.ui-button-image-box {position:relative;border-left-width:1px;border-left-style:solid;display:inline;width:20px;float:right}
+.ui-button-image-text { position:relative;float:left; left:14px}

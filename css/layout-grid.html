@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+<script type="text/javascript"
+	src="../js/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="../js/inheritable.js"></script>
+<script type="text/javascript" src="../js/control.js"></script>
+<script type="text/javascript" src="../js/control-bodypanel.js"></script>
+<script type="text/javascript" src="../js/control-label.js"></script>
+<script type="text/javascript" src="../js/control-button.js"></script>
+<script type="text/javascript" src="../js/control-line.js"></script>
+<script type="text/javascript" src="../js/control-image.js"></script>
+<script type="text/javascript" src="../js/control-text.js"></script>
+<script type="text/javascript" src="../js/control-button-label.js"></script>
+<script type="text/javascript" src="../js/control-button-image.js"></script>
+<script type="text/javascript" src="../js/layout.js"></script>
+<script type="text/javascript" src="../js/layout-hrow.js"></script>
+<script type="text/javascript" src="../js/layout-vrow.js"></script>
+<script type="text/javascript" src="../js/layout-grid.js"></script>
+<script type="text/javascript" src="../js/layout-fill.js"></script>
+<script type="text/javascript" src="../js/control-panel.js"></script>
+<script type="text/javascript" src="../js/scrollable.js"></script>
+
+<link href="jquery-ui-1.8.21.custom.css" rel="stylesheet">
+<link href="js-ui.css" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Handler for .ready() called.
+			var control = $("body").Control( {
+				"id" : "test",
+				type : "bodyPanel"
+				
+			})
+			
+			var panel=control.addControl( {
+				"id" : "panel",
+				type : "panel",
+				value : "button1",
+				title:"ffff",
+				"width":600,
+			    "layout" : {
+					type : "gridlayout",
+					"numColumns":3
+			  }
+			
+			});
+			var pane2=control.addControl( {
+				"id" : "pane2",
+				type : "panel",
+				value : "button1",
+				title:"ffff",
+				"width":600,
+			    "layout" : {
+					type : "gridlayout",
+					"numColumns":3
+			       }
+			
+			});
+			pane2.addControl( {
+				"id" : "testbutton1",
+				value : "button1",
+				type : "button"});
+			pane2.addControl( {
+				"id" : "testbutton2",
+				value : "button2",
+				type : "text",
+				"layout"  : {
+                "layoutData" :{
+            	       "vSpan":2,
+            	       "vAlignment":"center"
+                  }
+		         }
+				});
+			pane2.addControl( {
+				value : "button3",
+				"id" : "testbutton3",
+				"type" : "button",
+				"layout"  : {
+                    "layoutData" :{
+                	       "vSpan":3,
+                           "grabExcessVSpace":true,
+                           "grabExcessHSpace":true
+                      }
+			         }
+		         }
+				);
+			pane2.addControl( {
+				"id" : "testbutton4",
+				value : "button4",
+				type : "button"});
+			pane2.addControl( {
+				"id" : "testbutton5",
+				value : "button5",
+				"layout"  : {
+	                "layoutData" :{
+	            	       "hSpan":2,
+	            	       "hAlignment":"center"
+	                  }
+			         },
+				type : "button"});
+			pane2.addControl( {
+				"id" : "testbutton6",
+				value : "button6",
+				"layout"  : {
+	                "layoutData" :{
+	            	       "hSpan":2,
+	            	       "hIndent":35
+	                  }
+			         },
+				type : "button"});
+			pane2.addControl( {
+				"id" : "testbutton",
+				value : "button7",
+				type : "button"});
+			panel.addControl( {
+				"id" : "button4",
+				label : "add",
+				type : "button",
+				"events" : {
+				"click" : function() {
+				panel.addControl( {
+					"id" : "button5",
+					label : "new",
+					type : "button",
+					"layout"  : {
+	                    "layoutData" :{
+	                	      
+	                      }
+				         }
+					}
+
+					);
+				}
+			}});
+			panel.addControl( {
+				"id" : "button2",
+				type : "text",
+				value : "button2",
+				height : 100,
+				layout:{
+                    "layoutData":{
+			               "vSpan":3,
+			               "grabExcessVSpace":true
+                      }
+			         }
+			});
+			panel.addControl( {
+				"id" : "button3",
+				type : "button",
+				value : "button3",
+				layout:{
+                      "layoutData":{
+				  "heightHint" : 30,
+        		    "widthHint" : 160,
+                            "vSpan":2,
+                            "grabExcessHSpace":true,
+                            "grabExcessVSpace":true
+                        }
+				}
+			});
+			panel.addControl( {
+				"id" : "button4",
+				type : "button",
+				value : "button4",
+				layout:{
+                    "layoutData":{
+                	
+                          "grabExcessVSpace":true,
+                          "grabExcessHSpace":true
+                      }
+			         }
+			});
+			panel.addControl( {
+				"id" : "button5",
+				type : "button",
+				value : "button5",
+				layout:{
+                    "layoutData":{
+				"vSpan":1,
+                          "hSpan":1,
+                          "grabExcessVSpace":true,
+                          "grabExcessHSpace":true
+                      }
+			         }
+			});
+			panel.addControl( {
+				"id" : "button6",
+				type : "button",
+				value : "button6",
+				layout:{
+                    "layoutData":{
+                	
+                          "grabExcessVSpace":true,
+                          "grabExcessHSpace":true
+                      }
+			         }
+			});
+		
+		
+
+		});
+</script>
+<body scroll="no">
+</body>
+</html>

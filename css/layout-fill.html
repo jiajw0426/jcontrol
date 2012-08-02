@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+<script type="text/javascript"
+	src="../js/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="../js/inheritable.js"></script>
+<script type="text/javascript" src="../js/control.js"></script>
+<script type="text/javascript" src="../js/control-bodypanel.js"></script>
+<script type="text/javascript" src="../js/control-label.js"></script>
+<script type="text/javascript" src="../js/control-button.js"></script>
+<script type="text/javascript" src="../js/control-line.js"></script>
+<script type="text/javascript" src="../js/control-image.js"></script>
+<script type="text/javascript" src="../js/control-button-label.js"></script>
+<script type="text/javascript" src="../js/control-button-image.js"></script>
+<script type="text/javascript" src="../js/layout.js"></script>
+<script type="text/javascript" src="../js/layout-hrow.js"></script>
+<script type="text/javascript" src="../js/layout-vrow.js"></script>
+<script type="text/javascript" src="../js/layout-grid.js"></script>
+<script type="text/javascript" src="../js/layout-fill.js"></script>
+<script type="text/javascript" src="../js/control-panel.js"></script>
+<script type="text/javascript" src="../js/scrollable.js"></script>
+
+<link href="jquery-ui-1.8.21.custom.css" rel="stylesheet">
+<link href="js-ui.css" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Handler for .ready() called.
+			var control = $("body").Control( {
+				"id" : "test",
+				type : "bodyPanel"
+				
+			})
+			
+			var panel=control.addControl( {
+				"id" : "panel",
+				type : "panel",
+				value : "button1",
+				title:"ffff",
+				"width":600,
+			    "layout" : {
+					type : "filllayout",
+			  }
+			
+			});
+			var panel2=control.addControl( {
+				"id" : "panel2",
+				type : "panel",
+				value : "button1",
+				title:"ffff",
+				"width":600,
+			    "layout" : {
+					type : "filllayout",
+					"fill":"v"
+			  }
+			
+			});
+			panel.addControl( {
+				"id" : "button4",
+				label : "add",
+				type : "button",
+				"events" : {
+				"click" : function() {
+				panel.addControl( {
+					"id" : "button5",
+					label : "new",
+					type : "button"});	
+				}
+			}});
+			panel.addControl( {
+				"id" : "button5",
+				value : "button5",
+				type : "button"});	
+			panel2.addControl( {
+				"id" : "button6",
+				value : "button6",
+				type : "button"});
+			panel2.addControl( {
+				"id" : "button7",
+				value : "button7",
+				type : "button"});		
+			panel2.addControl( {
+				"id" : "button8",
+				value : "button8",
+				type : "button"});		
+
+		});
+</script>
+<body scroll="no">
+</body>
+</html>
