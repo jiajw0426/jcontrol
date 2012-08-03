@@ -3,7 +3,11 @@
 		
 		function _create(oInit) {
 			var oAttr = this.oAttr;
-			var dom = $("<div class='ui-widget ui-widget-content ui-corner-all ui-control ui.absolute'/>");
+			
+			var dom = $("<div class='ui-widget ui-corner-all ui-control ui.absolute'/>");
+			if(oInit.border){
+				dom.addClass("ui-widget-content");
+			}
 			oAttr.dom = dom;
 			dom.width(oInit.width);
 			dom.height(oInit.height);
@@ -53,16 +57,21 @@
 			var dom = this.oAttr.dom;
 			var vbar=this.oAttr.scrollBar.vbar;
 			var hbar=this.oAttr.scrollBar.hbar;
+			var borderWidth=0;
+			var titleHeight=0;
+			if(oInit.title){
+				titleHeight=oInit.titleHeight;
+			}
 			return {
 				x : 0,
 				y : 0,
 				offsetX : 0,
-				offsetY : oInit.titleHeight + 2,
+				offsetY : titleHeight ,
 				width : vbar ? dom.width()
 						- $.Scrollable.oDefaults.barWidth : dom.width(),
 				height : hbar ? dom.height() 
 						- $.Scrollable.oDefaults.barHeight : dom.height()
-						- oInit.titleHeight-2
+						- titleHeight
 			};
 		};
        
@@ -84,6 +93,7 @@
 		"titleHeight" : 28,
 		"height" : 200,
 		"width" : 300,
+		"border":true,
 		"scrolled" : true,
 		 "scroll" : {
 			scrollY:true,

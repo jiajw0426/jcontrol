@@ -26,16 +26,11 @@
 				}
 			}
 		}
-		function _getClientArea(){
-			var dom = this.oAttr.dom;
-			return {
-				width:dom.width(),height:dom.height()
-				}
-		}
+		
 		
 		this.oApi={
-			"_create":_create,
-			"_getClientArea":_getClientArea
+			"_create":_create
+			
 		};
 		this.oAttr={
 				"isContainer" : true	

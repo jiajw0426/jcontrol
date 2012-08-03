@@ -7,7 +7,6 @@
 			layout:{
             "layoutData":{
 			       "grabExcessVSpace":true
-			       
               }
 	         }
 		 });

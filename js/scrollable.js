@@ -16,7 +16,7 @@
 			var vbar = $("<div/>")
 					.insertAfter(control)
 					.addClass(
-							"ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all ui-scroll-v");
+							"ui-widget ui-widget-content ui-corner-all ui-scroll-v");
 			vbar.topArrow = $(
 					"<div class='ui-scroll-arrow-n-div ui-state-default ui-corner-all'><span class='ui-icon ui-icon-triangle-1-n ui-scroll-arrow-icon'></span></div>")
 					.appendTo(vbar);
@@ -150,7 +150,7 @@
 			var hbar = $("<div/>")
 					.insertAfter(control)
 					.addClass(
-							"ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all ui-scroll-h");
+							"ui-widget ui-widget-content ui-corner-all ui-scroll-h");
 			hbar.leftArrow = $(
 					"<div class='ui-scroll-arrow-w-div ui-state-default ui-corner-all'><span class='ui-icon ui-icon-triangle-1-w ui-scroll-arrow-icon'></span></div>")
 					.appendTo(hbar);

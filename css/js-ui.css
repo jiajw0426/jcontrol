@@ -1,3 +1,21 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+input, select, textarea, button,span,div {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	font-weight: normal;
+	font-style: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
 .ui-inline { display: inline; }
 
 .ui.absolute{position: absolute;}
@@ -9,7 +27,6 @@
 .ui-panel-control{border:0px;margin:0px;padding:0xp}
 
 .ui-control {position: absolute;}
-
 
 .ui-scroll-h {position: absolute;height:28px;bottom:1px;}
 .ui-scroll-arrow-w-div { position: absolute;   left:1px; top:1px;  border:1px;height:24px;width:24px;}
@@ -25,9 +42,23 @@
 .ui-scroll-button-container-v { position: absolute; width: 100%; border:0px; top:0px}
 .ui-scroll-arrow-s-div { position: absolute; right:1px; bottom:1px; border:1px;height:24px;width:24px;}
 
-.ui-text {padding:0px;margin:0px}
+.ui-text {}
+
 
 .ui-button-image  {position:absolute;bottom:4px;right:2px}
 .ui-button-button  {margin:0px}
 .ui-button-image-box {position:relative;border-left-width:1px;border-left-style:solid;display:inline;width:20px;float:right}
 .ui-button-image-text { position:relative;float:left; left:14px}
+
+
+
+.ui-menu{background: url(images/menu-bg1.png);padding:0px;background-position:150px 150px}
+.ui-menuitem-label{line-height:28px;color: 
+#E5E5E5;
+font-family: 'Trebuchet MS', Arial, Verdana;
+font-size: 11px;
+font-weight: bold;}
+.ui-menuitem-focus{background: url(images/menu-item-focus.png);background-position:  0px  0px}
+
+
+

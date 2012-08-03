@@ -15,7 +15,7 @@ var Control;
 			data = data ? data : {};
 			if (this.oAttr.layout && this.oAttr.isContainer
 					&& this.oAttr.children.length)
-				this.oAttr.layout._layout(this);
+				this.oAttr.layout._layout(this,data.reCompute);
 			if (!data.shallow) {
 				var allChild = this.oAttr.children;
 				for ( var i in allChild) {
@@ -34,8 +34,7 @@ var Control;
 				this.oAttr.children.push(control);
 				control.oAttr.container=this;
 				control.__layout({shallow:true});
-				setTimeout(function() {
-				
+				setTimeout(function() {				
 					_that.__layout();
 				}, 0);
 				return control;
@@ -43,8 +42,9 @@ var Control;
 		}
 
 		function __create() {
-			this.oInit.layout=$.extend({},Control.oDefaults.olayout,this.oInit.layout);
+			this.oInit.layout=$.extend(true,{},Control.oDefaults.olayout,this.oInit.layout);
 			var oInit = this.oInit;
+			
 			var layout = $.Layout(oInit.layout);
 			this.oAttr.layout = layout;
 			this._create(oInit);
@@ -64,7 +64,19 @@ var Control;
 			return Control.aExts;
 		};
 
+		function _getClientArea(){
+			var dom = this.oAttr.dom;
+			return {
+				x : 0,
+				y : 0,
+				offsetX : 0,
+				offsetY : 0, 
+				width:dom.width(),
+				height:dom.height()
+				};
+		}
 		this.oApi = {
+				"_getClientArea":_getClientArea,
 			"_fnAddControl" : _fnAddControl,
 			"_appendControl" : _appendControl,
 			"addControl" : _fnAddControl,

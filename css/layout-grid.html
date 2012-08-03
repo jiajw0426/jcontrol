@@ -141,6 +141,7 @@
 				type : "text",
 				value : "button2",
 				height : 100,
+				
 				layout:{
                     "layoutData":{
 			               "vSpan":3,
@@ -151,7 +152,14 @@
 			panel.addControl( {
 				"id" : "button3",
 				type : "button",
-				value : "button3",
+				label : "倒排",
+				"events" : {
+					"click" : function() {
+
+			       var controls=panel.oAttr.children.reverse();
+			       panel.__layout({reCompute:true});
+					}
+				},
 				layout:{
                       "layoutData":{
 				  "heightHint" : 30,

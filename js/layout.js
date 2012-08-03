@@ -2,7 +2,7 @@
 (function($) {
 	if($.Layout)return;
 	var Layout = function(oInit) {
-
+	    
 		function __create() {
 		}
 		function _create(oInit) {
