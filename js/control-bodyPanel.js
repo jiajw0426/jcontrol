@@ -24,17 +24,15 @@
 			var dom = this.oAttr.dom;
 			var vbar=this.oAttr.scrollBar.vbar;
 			var hbar=this.oAttr.scrollBar.hbar;
-			
 			return {
 				x : 0,
 				y : 0,
 				offsetX : 0,
-				offsetY : oInit.titleHeight + 2,
+				offsetY : 0,
 				width : vbar ? dom.width()
 						- $.Scrollable.oDefaults.barWidth : dom.width(),
 				height : hbar ? dom.height() 
-						- $.Scrollable.oDefaults.barHeight : dom.height()
-						- 2 
+						- $.Scrollable.oDefaults.barHeight : dom.height() 
 			};
 		};
 		var _that=this;

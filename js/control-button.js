@@ -12,7 +12,7 @@
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom=$("<button/>").addClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-button");
+			oAttr.dom=$("<div/>").addClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-button");
 			oAttr.control=oAttr.dom;
 			oAttr.client=oAttr.dom;
 	    	if(oInit.container){

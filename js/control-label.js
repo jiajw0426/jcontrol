@@ -12,7 +12,7 @@
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom=$("<span>"+oInit.label+"</span>");
+			oAttr.dom=$("<label>"+oInit.label+"</label>");
 			oAttr.control=oAttr.dom;
 			oAttr.client=oAttr.dom;
 	    	if(oInit.container){

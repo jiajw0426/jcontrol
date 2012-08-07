@@ -16,6 +16,7 @@
 				"left" : layoutData.left + "px"
 			};
             if (oInit.fill.toLowerCase() == "h") {
+            	
             	css["width"]=(oAttr.controlWidth-outlineWidth)+ "px";
             	if(!stable){
             		css["height"]=(oAttr.controlHeight-outlineHeight) + "px";
@@ -28,7 +29,7 @@
              	}
             }
             child.oAttr.dom.css(css);
-			//child.__layout();
+			 child.__layout();
 
 		}
 		function _computerOffset(control) {
@@ -77,7 +78,6 @@
 					"top":top,
 					"left":left
 				});
-				child.oInit.layout.layoutData.left=left;
 				if (oInit.fill.toLowerCase() == "h") {
 					if(child.oInit.layout.layoutData.stable){
 						top +=child.oAttr.dom.outerHeight() + oInit.spacing;
@@ -127,7 +127,7 @@
 		"marginLeft" : 2,
 		"marginTop" : 2,
 		"marginRight" : 2,
-		"marginBottom" : 2,
+		"marginBottom" :2,
 		"spacing" : 2,
 		"fill" : "h"
 		};

@@ -135,9 +135,8 @@
 				if (outlineHeight) {
 					earaHeight -= outlineHeight;
 				}
-				dom.css( {
-					"height" : earaHeight
-				});
+		
+				dom.height(earaHeight);
 			} else {
 				var topOfsset = earaHeight - outerHeight;
 				if (layoutData.vAlignment == "begin") {
@@ -179,6 +178,7 @@
 				}
 
 			}
+		
 			child.oAttr.dom.css( {
 				"position" : "absolute",
 				"top" : top,
@@ -349,7 +349,7 @@
 		"marginRight" : 2,
 		"marginBottom" : 2,
 		"vSpacing" : 2,
-		"hSpacing" : 5,
+		"hSpacing" : 2,
 		"hExpand" : true,
 		"vExpand" : true,
 		"numColumns" : 1,

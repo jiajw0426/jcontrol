@@ -18,9 +18,9 @@
 			}
 			if (oInit.title) {
 				oAttr.title = $(
-						"<div id='" + oInit.id + "'_title ui.absolute/>")
+						"<div id='"  + oInit.id +  "_title' />")
 						.appendTo(dom).css("height", oInit.titleHeight)
-						.addClass("ui-corner-all ui-widget-header");
+						.addClass("ui.absolute ui-corner-all ui-widget-header");
 			}
 			var client = $("<div class='ui-panel-client'></div>").appendTo(dom);
 			oAttr.client = client;
@@ -57,21 +57,24 @@
 			var dom = this.oAttr.dom;
 			var vbar=this.oAttr.scrollBar.vbar;
 			var hbar=this.oAttr.scrollBar.hbar;
-			var borderWidth=0;
 			var titleHeight=0;
 			if(oInit.title){
-				titleHeight=oInit.titleHeight;
+				titleHeight=oInit.titleHeight+2;
+			}
+			var borderWidth=0;
+			if(oInit.border){
+				borderWidth=1;
 			}
 			return {
 				x : 0,
 				y : 0,
 				offsetX : 0,
 				offsetY : titleHeight ,
-				width : vbar ? dom.width()
-						- $.Scrollable.oDefaults.barWidth : dom.width(),
-				height : hbar ? dom.height() 
+				width : (vbar ? dom.width()
+						- $.Scrollable.oDefaults.barWidth : dom.width()),
+				height :( hbar ? dom.height() 
 						- $.Scrollable.oDefaults.barHeight : dom.height()
-						- titleHeight
+						- titleHeight)
 			};
 		};
        
