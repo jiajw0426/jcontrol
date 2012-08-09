@@ -12,9 +12,10 @@
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom=$("<label>"+oInit.label+"</label>");
+			oAttr.dom=$("<div>"+oInit.label+"</div>");
 			oAttr.control=oAttr.dom;
 			oAttr.client=oAttr.dom;
+		
 	    	if(oInit.container){
 	    		oInit.container._appendControl(this);
 	    	}else{
@@ -46,7 +47,9 @@
 	};
 	Label.defaults.oSetting={
 			id : ""+new Date().getTime(),
-			label:"label"
+			label:"label",
+	        width:0,
+	        height:0
 	};
 	if ( typeof $.fn.Control == "function"){
 		$.fn.Control.aExts.push({

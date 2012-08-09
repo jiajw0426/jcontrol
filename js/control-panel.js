@@ -3,7 +3,6 @@
 		
 		function _create(oInit) {
 			var oAttr = this.oAttr;
-			
 			var dom = $("<div class='ui-widget ui-corner-all ui-control ui.absolute'/>");
 			if(oInit.border){
 				dom.addClass("ui-widget-content");
@@ -22,6 +21,7 @@
 						.appendTo(dom).css("height", oInit.titleHeight)
 						.addClass("ui.absolute ui-corner-all ui-widget-header");
 			}
+			
 			var client = $("<div class='ui-panel-client'></div>").appendTo(dom);
 			oAttr.client = client;
 			var clientArea = this._getClientArea();
@@ -96,11 +96,12 @@
 		"titleHeight" : 28,
 		"height" : 200,
 		"width" : 300,
+		"display":"",
 		"border":true,
 		"scrolled" : true,
 		 "scroll" : {
-			scrollY:true,
-			scrollX:true
+			scrollY:false,
+			scrollX:false
 		}
 	};
 	if (typeof $.fn.Control == "function") {

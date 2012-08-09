@@ -41,6 +41,15 @@ var Control;
 			}
 		}
 
+		function _setDefaultCss(){
+			var oInit=this.oInit;
+			if(oInit.width){
+				this.oAttr.dom.width(oInit.width);
+			}
+			if(oInit.height){
+				this.oAttr.dom.height(oInit.height);
+			}
+		}
 		function __create() {
 			this.oInit.layout=$.extend(true,{},Control.oDefaults.olayout,this.oInit.layout);
 			var oInit = this.oInit;
@@ -57,6 +66,7 @@ var Control;
 					}
 				}
 			}
+			this._setDefaultCss();
 
 		}
 
@@ -64,6 +74,37 @@ var Control;
 			return Control.aExts;
 		};
 
+		function _resize(data){
+			var oAttr=this.oAttr;
+			var dom=oAttr.dom;
+			var client=oAttr.client;
+			var control=oAttr.control;
+			if(data.width){
+				dom.width(data.width);
+			}
+			if(data.height){
+				dom.height(data.height);
+			}
+			var clientArea=this._getClientArea();
+			if(dom!=client){
+			client.css({
+				"width":clientArea.width+"px",
+				"height":clientArea.height+"px"
+			});
+			}
+			var outlineWidth=control.outerWidth()-control.width();
+			var outlineHeight=control.outerHeight()-control.height();
+			if(control!=dom&&control!=client){
+			control.css({
+				"width":(clientArea.width-outlineWidth)+"px",
+				"height":(clientArea.height-outlineHeight)+"px"
+			});}
+			var _that=this;
+			setTimeout(function() {				
+				_that.__layout();
+			}, 0);
+			
+		}
 		function _getClientArea(){
 			var dom = this.oAttr.dom;
 			return {
@@ -76,7 +117,9 @@ var Control;
 				};
 		}
 		this.oApi = {
-				"_getClientArea":_getClientArea,
+			"_setDefaultCss":_setDefaultCss,
+			"_resize":_resize,
+			"_getClientArea":_getClientArea,
 			"_fnAddControl" : _fnAddControl,
 			"_appendControl" : _appendControl,
 			"addControl" : _fnAddControl,

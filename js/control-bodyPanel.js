@@ -6,9 +6,9 @@
 		function _create(oInit) {
 			var oAttr = this.oAttr;
 			oAttr.dom = $("body").css("overflow" ,"hidden");
-			oAttr.control = $("<div class='ui.absolute ui-body-panel'/>")
+			oAttr.client = $("<div class='ui.absolute ui-body-panel'/>")
 					.appendTo(oAttr.dom);
-			oAttr.cient = oAttr.control;
+			oAttr.control = oAttr.client;
 			oAttr.dom.addClass("ui-body");
 			oAttr.dom.height($(window).height());
 			

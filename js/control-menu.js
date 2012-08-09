@@ -6,7 +6,7 @@
  * @author jia.jw
  * 
  */
-
+var debug=false;
 (function($, document) {
 	var Menu = function(oInit) {
 
@@ -32,6 +32,10 @@
 					this.oAttr.control.bind(event, this.oInit.events[event]);
 				}
 			}
+			for(var index in oInit.items){
+				var item=$.extend(oInit.items[index],{"type":"menuitem"});
+				this._addItem(item);
+			}
 		}
 		function _getClientArea() {
 			var dom = this.oAttr.dom;
@@ -41,129 +45,129 @@
 			};
 		}
 
-		function _clickItem(item){
-			this.oAttr.showing=!this.oAttr.showing;
+		function _clickItem(item) {
+			this.oAttr.showing = !this.oAttr.showing;
 			this._showSubItems(item);
 		}
 		function _addItem(oInit, parentItem) {
-			var container=this;
-			var level=0;
-			var _that=this;
-			if(parentItem){
-				level=parentItem.oAttr.level+1;
-				if(!parentItem.oAttr.itemsPanel){
-					var data={};
-					if(level>1){
-						data.position="e";
-					}
-					var newPanel=$.Attach(parentItem,data);
-					parentItem.oAttr.itemsPanel=newPanel;
-					var dom=newPanel.oAttr.dom;
+			var container = this;
+			var _that = this;
+			if (parentItem) {
+				oInit.level= parentItem.oInit.level + 1;
+				var data = {
+					"name" : "menuItemsPanel"
+				};
+				if (oInit.level > 1) {
+					data.position = "e";
+				}
+
+				container = $.Attach(parentItem, data, function(attach) {
+					var dom = attach.oAttr.dom;
 					dom.addClass("ui-menu");
-					dom.bind("mouseenter",function(){
+					dom.bind("mouseenter", function() {
 						_that.oAttr.fcousCount++;
 					});
-					dom.bind("mouseleave",function(){
+					dom.bind("mouseleave", function() {
 						_that.oAttr.fcousCount--;
 						_that._tryHideSubItems();
-					} );
-				}
-				container=parentItem.oAttr.itemsPanel;
+					});
+				});
 			}
-			var newItem=container.addControl(oInit);
-			newItem.oAttr.menu=this;
-			newItem.oAttr.level=level;
+			var newItem = container.addControl(oInit);
+			newItem.oAttr.menu = this;
+			if(parentItem){
+				parentItem.oAttr.subItems.push(newItem);
+			}else{
+				this.oAttr.subItems.push(newItem);
+				
+			}
 			return newItem;
 		}
-		function _tryHideSubItems(){
-			var _that=this;
-			setTimeout(function (){
-				
-				var count=_that.oAttr.fcousCount;
-				if(count==0&&_that.oAttr.focusItem==null){
-					_that.oAttr.showing=false;
+		function _tryHideSubItems() {
+			var _that = this;
+			setTimeout(function() {
+
+				var count = _that.oAttr.fcousCount;
+				if (count == 0 && _that.oAttr.focusItem == null) {
+					_that.oAttr.showing = false;
 					_that._hideAllSubItems();
 				}
-			},1000);
+			}, 1000);
 		}
-		function _lostFocusItem(item){
-			this.oAttr.focusItem=null;
+		function _lostFocusItem(item) {
+			this.oAttr.focusItem = null;
 			this._tryHideSubItems();
 		}
 
-		
-		function _hideAllSubItems(){
-			var showingSubItems=this.oAttr.showingSubItems;
-			var length=showingSubItems.length;
-			for(var i=0;i<length;i++){
-				var itemsPanel=showingSubItems.pop();
-				itemsPanel.oAttr.dom.css("display","none");
+		function _hideAllSubItems() {
+			var showingSubItems = this.oAttr.showingSubItems;
+			var length = showingSubItems.length;
+			for ( var i = 0; i < length; i++) {
+				var itemsPanel = showingSubItems.pop();
+				itemsPanel._hide();
 			}
 		}
-		function _focusItem(item){
-			this.oAttr.focusItem=item;
-			var level=item.oAttr.level;
-			var currentItems=this.oAttr.currentItems;
-			var length=currentItems.length;
-			for(var i=level;i<length;i++){
-				var oldItem=currentItems.pop();
+		function _focusItem(item) {
+			this.oAttr.focusItem = item;
+			var level = item.oInit.level;
+			var currentItems = this.oAttr.currentItems;
+			var length = currentItems.length;
+			for ( var i = level; i < length; i++) {
+				var oldItem = currentItems.pop();
 				oldItem.oAttr.dom.removeClass("ui-menuitem-focus");
 			}
 			item.oAttr.dom.addClass("ui-menuitem-focus");
 			currentItems.push(item);
 			this._showSubItems(item);
 		}
-		function _showSubItems(item){
-			if(!this.oAttr.showing){
+		function _showSubItems(item) {
+		
+			if (!this.oAttr.showing) {
 				this._hideAllSubItems();
 				return;
 			}
-			if(!item.oAttr.itemsPanel){
-				var label=item.oInit.label+"-"+item.oAttr.level+"-";
-				item._addItem( {
-					type : "menuitem",
-					label:label+"1"
-							});
-				item._addItem( {
-					type : "menuitem",
-					label:label+"2"
-							});
-				item._addItem( {
-					type : "menuitem",
-					label:label+"3"
-							});
+			if (!$.Attach.exist(item,"menuItemsPanel")) {
+				
+				for(var index in item.oInit.items){
+					var oInit=$.extend({},item.oInit.items[index],{"type":"menuitem"});
+					item._addItem(oInit);
+				}
 			}
-			var level=item.oAttr.level;
-			var showingSubItems=this.oAttr.showingSubItems;
-			var length=showingSubItems.length;
-			for(var i=level;i<length;i++){
-				var itemsPanel=showingSubItems.pop();
-				itemsPanel.oAttr.dom.css("display","none");
+			var level = item.oInit.level;
+			var showingSubItems = this.oAttr.showingSubItems;
+			var length = showingSubItems.length;
+			for ( var i = level; i < length; i++) {
+				var itemsPanel = showingSubItems.pop();
+				itemsPanel._hide();
 			}
-			if(item.oAttr.itemsPanel){
-				showingSubItems.push(item.oAttr.itemsPanel);
-				item.oAttr.itemsPanel.oAttr.dom.css("display","");
+			if(item.oInit.items.length==0){
+				return;
 			}
-			
+			var  items= $.Attach(item, {"name" : "menuItemsPanel"});
+			showingSubItems.push(items);
+			setTimeout(function(){
+			items._show();},0);
+
 		}
 		this.oApi = {
 			"_addItem" : _addItem,
-			"_clickItem":_clickItem,
-			"_tryHideSubItems":_tryHideSubItems,
+			"_clickItem" : _clickItem,
+			"_tryHideSubItems" : _tryHideSubItems,
 			"_create" : _create,
-			"_focusItem":_focusItem,
-			"_showSubItems":_showSubItems,
-		   "_lostFocusItem":_lostFocusItem,
-		   "_hideAllSubItems":_hideAllSubItems,
+			"_focusItem" : _focusItem,
+			"_showSubItems" : _showSubItems,
+			"_lostFocusItem" : _lostFocusItem,
+			"_hideAllSubItems" : _hideAllSubItems,
 			"_getClientArea" : _getClientArea
 		};
 		this.oAttr = {
-		    "focusItem":null,
-			"fcousCount":0,
+			"focusItem" : null,
+			"fcousCount" : 0,
 			"isContainer" : true,
-			"showing":false,
-			"showingSubItems":[],
-			"currentItems":[]
+			"showing" : false,
+			"showingSubItems" : [],
+			"currentItems" : [],
+			"subItems":[]
 		};
 		this.getFeatures = function() {
 			return Menu.aFeatures;
@@ -173,12 +177,13 @@
 	};
 	Menu.aFeatures = [];
 	Menu.defaults = {
-
+         itemHeight:35
 	};
 	Menu.defaults.oSetting = {
 		id : "" + new Date().getTime(),
 		height : 35,
 		width : 980,
+		items:[],
 		"layout" : {
 			"type" : "filllayout",
 			"fill" : "v"

@@ -12,9 +12,15 @@
 		
 		function _create(oInit){
 			var oAttr = this.oAttr;
-			oAttr.dom= $("<div  class='ui-icon ui-icon-folder-open ui-button-image'></div>");
-			oAttr.control=oAttr.dom;
+			oAttr.dom= $("<div  class='ui-icon ui-button-image'></div>");
 			oAttr.client=oAttr.dom;
+			oAttr.control=oAttr.dom;
+			if(oInit.style){
+				oAttr.dom.addClass(oInit.style);
+			}
+			if(oInit.image){
+				oAttr.control=$("<image srx='"+oInit.image+"'/>").appendTo(oAttr.dom);
+			}
 	    	if(oInit.container){
 	    		oInit.container._appendControl(this);
 	    	}else{
@@ -45,8 +51,9 @@
 			
 	};
 	Image.defaults.oSetting={
-			id : +new Date().getTime(),
-			label:"label"
+			id : ""+new Date().getTime(),
+			style:"ui-icon-folder-open",
+			image:""
 	};
 	if ( typeof $.fn.Control == "function"){
 		$.fn.Control.aExts.push({

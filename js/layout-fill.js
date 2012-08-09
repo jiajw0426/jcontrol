@@ -15,21 +15,23 @@
 				"top" : layoutData.top + "px",
 				"left" : layoutData.left + "px"
 			};
+            child.oAttr.dom.css(css);
+            var resizeData={};
             if (oInit.fill.toLowerCase() == "h") {
             	
-            	css["width"]=(oAttr.controlWidth-outlineWidth)+ "px";
+            	resizeData["width"]=(oAttr.controlWidth-outlineWidth);
             	if(!stable){
-            		css["height"]=(oAttr.controlHeight-outlineHeight) + "px";
+            		resizeData["height"]=(oAttr.controlHeight-outlineHeight) ;
             	}
             }
              if (oInit.fill.toLowerCase() == "v") {
-            	 css["height"]=(oAttr.controlHeight-outlineHeight) + "px";
+            	 resizeData["height"]=(oAttr.controlHeight-outlineHeight) ;
              	if(!stable){
-             		css["width"]=(oAttr.controlWidth-outlineWidth) + "px";
+             		resizeData["width"]=(oAttr.controlWidth-outlineWidth);
              	}
             }
-            child.oAttr.dom.css(css);
-			 child.__layout();
+             child._resize(resizeData);
+			
 
 		}
 		function _computerOffset(control) {

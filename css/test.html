@@ -6,9 +6,72 @@
 <script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
 <script type="text/javascript"
 	src="../js/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="../js/inheritable.js"></script>
+<script type="text/javascript" src="../js/control.js"></script>
+<script type="text/javascript" src="../js/control-bodypanel.js"></script>
+<script type="text/javascript" src="../js/control-label.js"></script>
+<script type="text/javascript" src="../js/control-button.js"></script>
+<script type="text/javascript" src="../js/control-line.js"></script>
+<script type="text/javascript" src="../js/control-menuitem.js"></script>
+<script type="text/javascript" src="../js/control-image.js"></script>
+<script type="text/javascript" src="../js/control-text.js"></script>
+<script type="text/javascript" src="../js/control-button-label.js"></script>
+<script type="text/javascript" src="../js/control-button-image.js"></script>
+<script type="text/javascript" src="../js/layout.js"></script>
+<script type="text/javascript" src="../js/layout-hrow.js"></script>
+<script type="text/javascript" src="../js/layout-vrow.js"></script>
+<script type="text/javascript" src="../js/layout-grid.js"></script>
+<script type="text/javascript" src="../js/layout-fill.js"></script>
+<script type="text/javascript" src="../js/control-panel.js"></script>
+<script type="text/javascript" src="../js/scrollable.js"></script>
 
+<link href="jquery-ui-1.8.21.custom.css" rel="stylesheet">
+<link href="js-ui.css" rel="stylesheet">
+<script type="text/javascript">
+	$(document).ready(function() {
+		// Handler for .ready() called.
+			var control = $("body").Control( {
+				"id" : "test",
+				type : "bodyPanel"
+				
+			})
+	
+			var pane2=control.addControl( {
+				"id" : "pane2",
+				type : "panel",
+				value : "button1",
+				"width":600,
+				"height":30,
+				"scrolled" : false,
+				"layout" : {
+				"type" : "gridlayout",
+				"numColumns" : 1
+			    }
+			
+			});
+			pane2.addControl( {
+				"id" : "testbutton1",
+				value : "button1",
+				type : "menuitem"					,
+	                "layout":{
+	                    layoutData:{
+	                        stable:true
+	                        }
+	                }});
+			pane2.addControl( {
+				"id" : "testbutton1",
+				value : "button1",
+				type : "menuitem"});
+			pane2.addControl( {
+				"id" : "testbutton1",
+				value : "button1",
+				type : "menuitem"});
+		
+		
+
+		});
+</script>
 <body scroll="no">
-<script type="text/javascript" src="../js/test.js"></script>
-
 </body>
 </html>

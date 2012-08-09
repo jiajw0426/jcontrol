@@ -79,6 +79,7 @@
 
 			var controlHeight = layoutData.heightHint > outerHeight ? layoutData.heightHint
 					: outerHeight;
+		
 			var height = controlHeight / vSpan;
 			for ( var c = 0; c < hSpan; c++) {
 				if (layoutData.grabExcessHSpace) {
@@ -127,7 +128,7 @@
 			for ( var i = 0; i < vSpan; i++) {
 				earaHeight += oAttr.rowHeight[i + layoutData._rowIndex];
 			}
-
+			
 			if (layoutData.grabExcessVSpace || layoutData.vAlignment == "full") {
 
 				var dom = child.oAttr.dom;
@@ -135,7 +136,6 @@
 				if (outlineHeight) {
 					earaHeight -= outlineHeight;
 				}
-		
 				dom.height(earaHeight);
 			} else {
 				var topOfsset = earaHeight - outerHeight;
@@ -187,7 +187,7 @@
 			});
 		}
 		function _computerOffset(control) {
-			if (this.oInit.hExpand) {
+			if (this.oInit.expand) {
 				$.Scrollable(control, {
 					"toWidth" : this.oAttr.allWidth,
 					"toHeight" : this.oAttr.allHeight
@@ -350,8 +350,7 @@
 		"marginBottom" : 2,
 		"vSpacing" : 2,
 		"hSpacing" : 2,
-		"hExpand" : true,
-		"vExpand" : true,
+		"expand" : true,
 		"numColumns" : 1,
 		"makeColumnsEqualWidth" : false,
 

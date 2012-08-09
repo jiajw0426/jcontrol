@@ -259,7 +259,7 @@
 		var oSetting = $.extend( {}, Scrollable.oDefaults.oSettings, oSetting,
 				control.oInit.scroll);
 		var scroll = control.oAttr.scrollBar;
-		var scrollDom = control.oAttr.control;
+		var scrollDom = control.oAttr.dom;
 		// 只有在第一次运行时初始化原始高度和宽度
 		if (scroll.originWidth == -1) {
 			scroll.originWidth = scrollDom.width();
@@ -268,27 +268,30 @@
 			scroll.originHeight = scrollDom.height();
 		}
 		if (oSetting.toHeight > scroll.originHeight) {
-			if (oSetting.scrollY) {
-				creatVScrollbar(control, oSetting);
-			}else{
+			if (!oSetting.scrollY  ) {
 				if(control.oAttr.dom.outerHeight()<oSetting.toHeight){
-				    control.oAttr.dom.css("height",oSetting.toHeight);
+				    control._resize({"height":oSetting.toHeight});
 				    control.oInit.layout.layoutData._outerHeight=control.oAttr.dom.outerHeight();
 				    control.oInit.layout.layoutData._orignHeight= control.oInit.layout.layoutData._height;
 				    control.oInit.layout.layoutData._height=control.oAttr.dom.height();
+				    
 				}
+			}else{
+				creatVScrollbar(control, oSetting);
+				
 			}
 		}
 		if (oSetting.toWidth > scroll.originWidth) {
-			if (oSetting.scrollX) {
-				creatHScrollbar(control, oSetting);
-			}else{
+			if (!oSetting.scrollX) {
 				if(control.oAttr.dom.outerWidth()<oSetting.toWidth){
-				   control.oAttr.control.css("width",oSetting.toWidth);
-				   control.oInit.layout.layoutData._outerWidth= control.oAttr.dom.outerWidth();
-				   control.oInit.layout.layoutData._orignWidth=control.oInit.layout.layoutData._width;
-				   control.oInit.layout.layoutData._width= control.oAttr.dom.width();
-				}
+					   control._resize({"width":oSetting.toWidth});
+					   control.oInit.layout.layoutData._outerWidth= control.oAttr.dom.outerWidth();
+					   control.oInit.layout.layoutData._orignWidth=control.oInit.layout.layoutData._width;
+					   control.oInit.layout.layoutData._width= control.oAttr.dom.width();
+					 
+					}
+			}else{
+				creatHScrollbar(control, oSetting);
 			}
 		}
 
